@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="myPackage" extends="struts-default" namespace="/">
+		<action name="login" class="com.howen.user.action.LoginAction" method="checkLogin">
+			<result name="success">doLogin.jsp</result>
+			<result name="error">login_fail.jsp</result>
+		</action>
+		<action name="InsertServlet" class="com.howen.user.action.UserAction" method="registerUser">
+			<result name="success">reg_success.jsp</result>
+			<result name="error">check.jsp</result>
+		</action>
+		<action name="*" class="com.howen.user.action.StuInfoAction" method="{1}">
+			<result name="success">stuinfo_save_success.jsp</result>
+		</action>
+	</package>
+</struts>    
