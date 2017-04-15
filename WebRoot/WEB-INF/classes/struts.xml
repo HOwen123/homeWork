@@ -2,6 +2,17 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<package name="myPackage" extends="struts-default" namespace="/">
+		<interceptors>
+			<interceptor name="Authority" class="com.howen.user.action.AuthorityInterceptor"></interceptor>
+		    <interceptor-stack name="loginStack">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="Authority"></interceptor-ref>
+		    </interceptor-stack>
+		</interceptors>
+		
+		<global-results>
+			<result name="login" type="redirect">/Login.jsp</result>
+		</global-results>
 		<action name="login" class="com.howen.user.action.LoginAction" method="checkLogin">
 			<result name="success">doLogin.jsp</result>
 			<result name="error">login_fail.jsp</result>
@@ -11,7 +22,14 @@
 			<result name="error">check.jsp</result>
 		</action>
 		<action name="*" class="com.howen.user.action.StuInfoAction" method="{1}">
+			<interceptor-ref name="Authority"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success">stuinfo_save_success.jsp</result>
+		</action>
+		<action name="PageAction" class="com.howen.user.action.PageAction">
+			<interceptor-ref name="Authority"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success">easyUI01.jsp</result>
 		</action>
 	</package>
 </struts>    

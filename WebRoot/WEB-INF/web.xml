@@ -11,11 +11,13 @@
   </filter-mapping>
   <servlet>
     <servlet-name>PageServlet</servlet-name>
-    <servlet-class>com.howen.user.servlet.PageServlet</servlet-class>
+    <servlet-class>com.howen.user.action.PageServlet</servlet-class>
   </servlet>
+
   <servlet-mapping>
-  	<servlet-name>PageServlet</servlet-name>
-    <url-pattern>/PageServlet</url-pattern>
+    <servlet-name>PageServlet</servlet-name>
+    <url-pattern>/servlet/PageServlet</url-pattern>
   </servlet-mapping>
+
 
 </web-app>

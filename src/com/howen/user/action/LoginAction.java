@@ -4,7 +4,10 @@ package com.howen.user.action;
 import java.util.Map;
 
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
 
 import com.howen.user.dao.UserDao;
 import com.howen.user.domain.User;
@@ -22,6 +25,9 @@ public class LoginAction extends ActionSupport implements ModelDriven<User>{
 		String password = user.getPassword();
 		UserDao userDao = new UserDao();
 		user = userDao.checkLogin(name, password);
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		session.put("user", user);
+		
 		if (user!=null) {
 			return "success";
 		}else {

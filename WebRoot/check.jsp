@@ -27,10 +27,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      <%	
     	if(reg.isValidate()){
      %>
-     <jsp:forward page="reg_success.jsp"></jsp:forward>
+     <jsp:forward page="/reg_success.jsp"></jsp:forward>
      <%}else{
       %>
-     <jsp:forward page="register.jsp"></jsp:forward>
+     <jsp:forward page="/register.jsp"></jsp:forward>
      <%} %>
   </body>
 </html>

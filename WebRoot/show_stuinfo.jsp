@@ -1,7 +1,6 @@
 <%@page import="com.howen.user.domain.StuInfo"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<jsp:useBean id="page1" class="com.howen.user.domain.Page"></jsp:useBean>
-<<jsp:setProperty property="*" name="page1"/>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -21,14 +20,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
+	<script type="text/javascript">
+		function validate(){
+		var pageIndex = document.getElementsByName("pageIndex")[0].value;
+		if(pageIndex>${totalPages}){
+			alert("你输入的页面大于最大页数，页面将跳转到首页!");
+			
+			window.document.location.href="PageAction";
+			return false;
+		}
+		return true;	
+	}
+	</script>
   </head>
   
   <body>
-    <a href="PageServlet?pageIndex=1">首页</a>
-  	<a href="PageServlet?pageIndex=<%=(Integer)(request.getAttribute("pageIndex"))-1 %>">上一页</a>
-  	<a href="PageServlet?pageIndex=<%=(Integer)(request.getAttribute("pageIndex"))+1 %>">下一页</a>
-  	<a href="PageServlet?pageIndex=<%=(Integer)(request.getAttribute("totalPages")) %>">末页</a>(<%=request.getAttribute("pageIndex") %>/<%=request.getAttribute("totalPages") %>)
+  
+    <a href="PageAction?pageIndex=1">首页</a>
+  	<a href="PageAction?pageIndex=${pageIndex-1}">上一页</a>
+  	<a href="PageAction?pageIndex=${pageIndex+1}">下一页</a>
+  	<a href="PageAction?pageIndex=${totalPages}">末页</a>(<%=request.getAttribute("pageIndex") %>/<%=request.getAttribute("totalPages") %>)
+	共<font color="red"><%=request.getAttribute("totalPages") %></font>页&nbsp;&nbsp;
+	共<font color="red"><%=request.getAttribute("pageCounts") %></font>条记录
+	<form action="PageAction" onsubmit="return validate();">
+		<font size="4">跳转至</font>
+		<input type="text" size="2" name="pageIndex">页
+		<input type="submit" value="跳转">
+	</form>
 	<table style="border：solid 1">
 	<tr><td style="width:90px;">学生姓名</td><td style="width:90px;">年龄</td><td style="width:90px;">性别</td>
 	<td style="width:90px;">住址</td><td style="width:90px;">民族</td><td style="width:90px;">爱好</td></tr>

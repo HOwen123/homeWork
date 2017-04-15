@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <body>
     <ul>
         <li><a href="stuManage.jsp" target="a3">学生信息管理</a></li>
-        <li><a href="PageServlet?pageIndex=1" target="a3">学生信息管理</a></li>
+        <li><a href="easyUI01.jsp" target="a3">学生信息管理</a></li>
         <li><a href="images/3.jpg" target="a3">船灯舞艺术之乡--平远县 </a></li>
         <li><a href="images/4.jpg" target="a3">火龙艺术之乡--丰顺县</a></li>
         <li><a href="images/5.jpg" target="a3">竹马艺术之乡--五华县</a></li>
