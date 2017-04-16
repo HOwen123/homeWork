@@ -47,12 +47,13 @@ public class PageAction extends ActionSupport implements ModelDriven<Page>{
 		int pageCounts = pageTool.getCount();
 		List<StuInfo> list = pageTool.getPage(pageIndex, pageSize);
 		HttpServletResponse resp = ServletActionContext.getResponse();
-
+		resp.setCharacterEncoding("utf-8");
 		JsonObject json=new JsonObject();
 		JsonArray array = new JsonArray();
 		JsonObject member=null;
 		try {
 			for (int i = 0; i < list.size(); i++) {
+//				System.out.println(list.get(i).getStuname());
 				member = new JsonObject();
 				member.addProperty("stuname", list.get(i).getStuname());
 				member.addProperty("age", list.get(i).getAge());
